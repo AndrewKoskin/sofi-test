@@ -1,0 +1,48 @@
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(levelname)s %(message)s"
+addopts = [
+    "--alluredir=allure-results"
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+# Автоматически исправлять то, что возможно
+fix = true
+
+[tool.ruff.lint]
+select = [
+    "F", # Pyflakes
+    "I", # Ошибки стиля импортов
+    "E", # Базовый PEP8 стиль
+    "W", # Более строгий pycodestyle
+    "B", # Bugbear - потенциальные баги
+    "UP", # Best practices
+    "SIM", # Simplify - упрощение кода
+    "ARG", # Неиспользуемые аргументы/переменные
+    "G", # Логирование
+    "BLE", # Перехват исключений
+    "ANN", # Аннотации типов
+    "DTZ", # Datetime timezone проблемы
+    "PYI", # Несовременные проверки типов
+    "PTH", # Правильное использование pathlib
+    "C4", # Полезные проверки flake8
+]
+
+ignore = [
+    "E501", # Разрешаем длинные строки в тестах
+    "ANN201", # Не заставляем аннотировать тестовые функции
+    "ANN401", # Не ругаться на Any тайпинг
+    "S101", # Не ругаемся на assert в pytest
+    "PTH123", # Не заставляем pathlib везде
+    "G004", # Не ругаться на f-строки в logging
+]
+
+[tool.ruff.lint.isort]
+known-first-party = [
+    "framework",
+    "tests",
+]
