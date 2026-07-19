@@ -48,18 +48,20 @@ class APIClient:
 
     def _log_request(self, method: str, url: str, **kwargs: Any) -> None:
         """Логирует запрос"""
+        logger.info("=" * 120)
         logger.info(f"Request: {method} {url}")
-        if "json" in kwargs:
-            logger.info(f"Request Body: {json.dumps(kwargs['json'], ensure_ascii=False)}")
-        elif "data" in kwargs:
-            logger.info(f"Request Data: {kwargs['data']}")
-        if "params" in kwargs:
-            logger.info(f"Request Params: {kwargs['params']}")
+        if request_json := kwargs.get("json"):
+            logger.info(f"Request Body: {json.dumps(request_json, ensure_ascii=False)}")
+        elif data := kwargs.get("data"):
+            logger.info(f"Request Data: {data}")
+        if params := kwargs.get("params"):
+            logger.info(f"Request Params: {params}")
         if self.cookies:
             logger.info(f"Request Cookies: {self.cookies}")
 
     def _log_response(self, response: requests.Response) -> None:
         """Логирует ответ"""
+        logger.info("=" * 120)
         logger.info(
             f"Response: status - {response.status_code}, method - {response.request.method} url - {response.url}"
         )
@@ -74,7 +76,6 @@ class APIClient:
         raise_for_status: bool = True,
         **kwargs: Any,
     ) -> requests.Response:
-
         url = self._build_url(path)
 
         self._log_request(method, url, **kwargs)
