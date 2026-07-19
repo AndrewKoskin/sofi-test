@@ -18,6 +18,10 @@ pre-commit install
 ```shell
 scoop install allure
 ```
+- Запуск аллюр отчета локально
+```bash
+allure serve allure-results
+```
 
 ### Assertions
 ```python
