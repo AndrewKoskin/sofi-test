@@ -242,7 +242,7 @@ class APIClient:
             return {}
         return response.json()
 
-    def copy(self) -> "APIClient":
+    def copy(self) -> APIClient:
         """Создать копию клиента с теми же настройками"""
         new_client = APIClient(
             base_url=self.base_url,

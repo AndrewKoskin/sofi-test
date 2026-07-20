@@ -8,10 +8,12 @@ addopts = [
 
 [tool.ruff]
 line-length = 120
-target-version = "py312"
+target-version = "py314"
+fix = true # Автоматически исправлять то, что возможно
 
-# Автоматически исправлять то, что возможно
-fix = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.ruff.lint]
 select = [
